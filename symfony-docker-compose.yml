@@ -27,6 +27,8 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     # networks:
     #   - dockerDemoNetwork
+    volumes:
+      - symfony-app-volumes:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin
@@ -41,3 +43,6 @@ services:
 # networks:
 #   dockerDemoNetwork:
 
+volumes:
+  symfony-app-volumes:
+    driver: local
