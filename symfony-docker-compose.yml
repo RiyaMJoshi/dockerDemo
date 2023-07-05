@@ -12,6 +12,8 @@ services:
     working_dir: /var/www
     depends_on:
       - mysql-app
+    networks:
+      - dockerDemoNetwork
       
   mysql-app:
     image: mysql
@@ -25,8 +27,8 @@ services:
       MYSQL_USER: docker
       MYSQL_PASSWORD: password
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
-    # networks:
-    #   - dockerDemoNetwork
+    networks:
+      - dockerDemoNetwork
     volumes:
       - symfony-app-volumes:/var/lib/mysql
 
@@ -37,11 +39,11 @@ services:
       - 8082:80
     environment:
       - PMA_HOST=mysql-app
-    # networks:
-    #   - dockerDemoNetwork
+    networks:
+      - dockerDemoNetwork
       
-# networks:
-#   dockerDemoNetwork:
+networks:
+  dockerDemoNetwork:
 
 volumes:
   symfony-app-volumes:
